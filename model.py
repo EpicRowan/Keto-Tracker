@@ -1,6 +1,7 @@
 """Models and database functions for Keto tracker project."""
 
 from flask_sqlalchemy import SQLAlchemy
+from datetime import datetime
 
 # This is the connection to the PostgreSQL database; we're getting
 # this through the Flask-SQLAlchemy helper library. On this, we can
@@ -47,17 +48,20 @@ class Food(db.Model):
         return f"<Food food_id={self.food_id} name={self.name}>"
 
 
-class Date(db.Model):
+class Meal(db.Model):
     """Rating of a movie by a user."""
 
-    __tablename__ = "dates"
+    __tablename__ = "meals"
 
-    date_id = db.Column(db.Integer,
+    meal_id = db.Column(db.Integer,
                           autoincrement=True,
                           primary_key=True)
+    meal_type = db.Column(db.String(100))
     food_id = db.Column(db.Integer)
     user_id = db.Column(db.Integer)
-    carbs = db.Column(db.Integer)
+    # use datetime
+    date = db.Column(db.Integer)
+    
 
     def __repr__(self):
         """Provide helpful representation when printed."""
