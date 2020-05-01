@@ -28,35 +28,34 @@ def load_users(user_filename):
     db.session.commit()
 
 
-def load_movies(movie_filename):
+def load_food(food_filename):
     """Load movies from u.item into database."""
 
-    print("Movies")
+    print("Food")
 
-    for i, row in enumerate(open(movie_filename)):
+    for i, row in enumerate(open(food_filename)):
         row = row.rstrip()
 
         # clever -- we can unpack part of the row!
-        movie_id, title, released_str, junk, imdb_url = row.split("|")[:5]
+        # movie_id, title, released_str, junk, imdb_url = row.split("|")[:5]
 
         # The date is in the file as daynum-month_abbreviation-year;
         # we need to convert it to an actual datetime object.
 
-        if released_str:
-            released_at = datetime.datetime.strptime(released_str, "%d-%b-%Y")
-        else:
-            released_at = None
+        # if released_str:
+        #     released_at = datetime.datetime.strptime(released_str, "%d-%b-%Y")
+        # else:
+        #     released_at = None
 
         # Remove the (YEAR) from the end of the title.
 
-        title = title[:-7]   # " (YEAR)" == 7
+        # title = title[:-7]   # " (YEAR)" == 7
 
-        movie = Movie(title=title,
-                      released_at=released_at,
-                      imdb_url=imdb_url)
+        food = Food(name=name,
+                    carbs=carbs)
 
         # We need to add to the session or it won't ever be stored
-        db.session.add(movie)
+        db.session.add(food)
 
         # provide some sense of progress
         if i % 100 == 0:
@@ -66,28 +65,26 @@ def load_movies(movie_filename):
     db.session.commit()
 
 
-def load_ratings(rating_filename):
+def load_meals(meals_filename):
     """Load ratings from u.data into database."""
 
-    print("Ratings")
+    print("Meals")
 
-    for i, row in enumerate(open(rating_filename)):
+    for i, row in enumerate(open(meals_filename)):
         row = row.rstrip()
 
-        user_id, movie_id, score, timestamp = row.split("\t")
+        # user_id, movie_id, score, timestamp = row.split("\t")
 
-        user_id = int(user_id)
-        movie_id = int(movie_id)
-        score = int(score)
+        # user_id = int(user_id)
+        # movie_id = int(movie_id)
+        # score = int(score)
 
         # We don't care about the timestamp, so we'll ignore this
 
-        rating = Rating(user_id=user_id,
-                        movie_id=movie_id,
-                        score=score)
+        meal = Meal(user_id=user_id,)
 
         # We need to add to the session or it won't ever be stored
-        db.session.add(rating)
+        db.session.add(meal)
 
         # provide some sense of progress
         if i % 1000 == 0:
