@@ -119,10 +119,10 @@ if __name__ == "__main__":
     connect_to_db(app)
     db.create_all()
 
-    user_filename = "seed_data/u.user"
-    movie_filename = "seed_data/u.item"
-    rating_filename = "seed_data/u.data"
+    user_filename = ""
+    food_filename = ""
+    meal_filename = ""
     load_users(user_filename)
-    load_movies(movie_filename)
-    load_ratings(rating_filename)
+    load_foods(food_filename)
+    load_meals(meal_filename)
     set_val_user_id()
