@@ -22,6 +22,13 @@ def index():
     """Homepage."""
     return "<html><body>Placeholder for the homepage.</body></html>"
 
+@app.route("/users")
+def user_list():
+    """Show list of users."""
+
+    users = User.query.all()
+    return render_template("user_list.html", users=users)
+
 
 if __name__ == "__main__":
     # We have to set debug=True here, since it has to be True at the
