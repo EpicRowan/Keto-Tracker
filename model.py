@@ -59,8 +59,7 @@ class Meal(db.Model):
     meal_type = db.Column(db.String(100))
     food_id = db.Column(db.Integer)
     user_id = db.Column(db.Integer)
-    # use datetime
-    date = db.Column(db.Integer)
+    date = db.datetime(db.Integer)
     
 
     def __repr__(self):
