@@ -56,9 +56,9 @@ class Meal(db.Model):
     meal_id = db.Column(db.Integer,
                           autoincrement=True,
                           primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
     meal_type = db.Column(db.String(100))
-    food_id = db.Column(db.Integer)
-    user_id = db.Column(db.Integer)
+    food_id = db.Column(db.Integer, db.ForeignKey('foods.food_id'))
     date = db.datetime(db.Integer)
     
 
