@@ -59,7 +59,7 @@ class Meal(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
     meal_type = db.Column(db.String(100))
     food_id = db.Column(db.Integer, db.ForeignKey('foods.food_id'))
-    date = db.datetime(db.Integer)
+    # date = db.datetime(db.Integer)
     
 
     def __repr__(self):
