@@ -36,6 +36,25 @@ def register_form():
 
     return render_template("register_form.html")
 
+@app.route('/register', methods=['POST'])
+def register_process():
+    """Process registration."""
+
+    # Get form variables
+    email = request.form["email"]
+    password = request.form["password"]
+    age = int(request.form["age"])
+    zipcode = request.form["zipcode"]
+
+    new_user = User(email=email, password=password, age=age, zipcode=zipcode)
+
+    db.session.add(new_user)
+    db.session.commit()
+
+    flash(f"User {email} added.")
+    return redirect("/")
+
+
 
 if __name__ == "__main__":
     # We have to set debug=True here, since it has to be True at the
