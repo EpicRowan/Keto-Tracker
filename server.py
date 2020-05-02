@@ -52,6 +52,12 @@ def register_process():
     flash(f"User {email} added.")
     return redirect("/")
 
+@app.route('/login', methods=['GET'])
+def login_form():
+    """Show login form."""
+
+    return render_template("login_form.html")
+
 @app.route('/login', methods=['POST'])
 def login_process():
     """Process login."""
