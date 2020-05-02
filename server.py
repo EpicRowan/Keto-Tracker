@@ -4,7 +4,7 @@ from flask import (Flask, render_template, redirect, request, flash,
                    session)
 from flask_debugtoolbar import DebugToolbarExtension
 
-from model import connect_to_db, db
+from model import User, Food, Meal, connect_to_db, db
 
 
 app = Flask(__name__)
@@ -29,6 +29,12 @@ def user_list():
 
     users = User.query.all()
     return render_template("user_list.html", users=users)
+
+@app.route('/register', methods=['GET'])
+def register_form():
+    """Show form for user signup."""
+
+    return render_template("register_form.html")
 
 
 if __name__ == "__main__":
