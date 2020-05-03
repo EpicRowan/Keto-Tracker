@@ -62,11 +62,11 @@ def login_process():
     user = User.query.filter_by(email=email).first()
 
     if not user:
-        flash("No such user")
+        flash("No such user", 'error')
         return redirect("/login")
 
     if user.password != password:
-        flash("Incorrect password")
+        flash("Incorrect password", 'error')
         return redirect("/login")
 
     session["user_id"] = user.user_id
