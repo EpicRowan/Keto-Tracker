@@ -79,7 +79,7 @@ def logout():
     """Log out."""
 
     del session["user_id"]
-    flash("Logged Out.")
+    flash("Logged Out")
     return redirect("/")
 
 
