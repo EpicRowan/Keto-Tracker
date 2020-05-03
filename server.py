@@ -23,13 +23,6 @@ def index():
     """Homepage."""
     return render_template("homepage.html")
 
-@app.route("/users")
-def user_list():
-    """Show list of users."""
-
-    users = User.query.all()
-    return render_template("user_list.html", users=users)
-
 @app.route('/register', methods=['GET'])
 def register_form():
     """Show form for user signup."""
@@ -80,6 +73,14 @@ def login_process():
 
     flash("Logged in")
     return redirect(f"/users/{user.user_id}")
+
+@app.route('/logout')
+def logout():
+    """Log out."""
+
+    del session["user_id"]
+    flash("Logged Out.")
+    return redirect("/")
 
 
 if __name__ == "__main__":
