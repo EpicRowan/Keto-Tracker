@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+
+  <h1>{{ user.email }} ({{ user.user_id }})</h1>
+
+  {% if user.meals %}
+
+    <h2>Meals</h2>
+
+
+  {% endif %}
+
+{% endblock %}
