@@ -6,9 +6,9 @@
 
     <h2> Select date</h2>
 
-     {% if meal.user_id %}
+     {% if user.meal.date %}
     <ul>
-      {% for date in meals.date %}
+      {% for date in user.meal.date %}
         <li>
           <a href="/users/{{ foods.name }}">{{ foods.name}}</a>
         </li>
