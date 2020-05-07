@@ -41,6 +41,7 @@ class Food(db.Model):
                          primary_key=True)
     name = db.Column(db.String(100))
     carbs = db.Column(db.Integer)
+    user = db.relationship('User', backref=db.backref('food', uselist=False))
 
     def __repr__(self):
         """Provide helpful representation when printed."""
@@ -59,9 +60,8 @@ class Meal(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
     meal_type = db.Column(db.String(100))
     food_id = db.Column(db.Integer, db.ForeignKey('foods.food_id'))
-    date = db.Column(db.Integer, db.relationship("User",
-                           backref=db.backref("meals",
-                                              order_by=meal_id)))
+    date = db.Column(db.Integer)
+    user = db.relationship('User', backref=db.backref('meal', uselist=False))
     
 
     def __repr__(self):
