@@ -5,10 +5,21 @@
 
 
     <h2> Select date</h2>
+    
+     {% if user.meals %}
+    <ul>
+      {% for rating in movie.ratings %}
+        <li>
+          <a href="/users/{{ rating.user_id }}">{{ rating.user_id }}</a>
+          rated {{ rating.score }}
+        </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
 
-    <h2> Select date</h2>
+    <h2> Enter meal</h2>
 
-    <h2> Select date</h2>
+    <h2> Enter food</h2>
 
 
 {% endblock %}
