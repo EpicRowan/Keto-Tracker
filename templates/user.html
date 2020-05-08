@@ -6,7 +6,7 @@
 
     <h2> Select date</h2>
 
-     {% if user.meal.date %}
+     {% if user_id in meals.user_id %}
     <ul>
       {% for date in user.meal.date %}
         <li>
@@ -14,7 +14,7 @@
         </li>
       {% endfor %}
     </ul>
-  {% endif %}
+
 
     <h2> Enter meal</h2>
 
