@@ -15,7 +15,7 @@ db = SQLAlchemy()
 # Model definitions
 
 class User(db.Model):
-    """User of ratings website."""
+    """User of website."""
 
     __tablename__ = "users"
 
@@ -32,7 +32,7 @@ class User(db.Model):
 
 
 class Food(db.Model):
-    """Movie on ratings website."""
+    """Food info pulled from database"""
 
     __tablename__ = "foods"
 
@@ -50,7 +50,7 @@ class Food(db.Model):
 
 
 class Meal(db.Model):
-    """Rating of a movie by a user."""
+    """Meal info inputed by user"""
 
     __tablename__ = "meals"
 
@@ -60,8 +60,19 @@ class Meal(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
     meal_type = db.Column(db.String(100))
     food_id = db.Column(db.Integer, db.ForeignKey('foods.food_id'))
-    date = db.Column(db.Integer)
     user = db.relationship('User', backref=db.backref('meal'))
+
+# class Date(db.Model):
+#     """Dates used by user."""
+
+#     __tablename__ = "dates"
+
+#     date_id = db.Column(db.Integer,
+#                           autoincrement=True,
+#                           primary_key=True)
+#     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
+#     meal_id = db.Column(db.Integer,db.ForeignKey('users.user_id'))
+    # user = db.relationship('User', backref=db.backref('meal'))
     
 
     def __repr__(self):
