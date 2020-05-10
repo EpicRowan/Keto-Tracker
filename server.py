@@ -79,7 +79,7 @@ def user_detail(user_id):
     """Show info about user."""
 
     user = User.query.get(user_id)
-    dates = Meal.query.filter_by(date=date).all()
+    dates = Meal.query.filter_by(user=user).all()
 
     return render_template("user.html", user=user, dates=dates)
 
