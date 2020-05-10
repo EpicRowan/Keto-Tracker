@@ -79,7 +79,9 @@ def user_detail(user_id):
     """Show info about user."""
 
     user = User.query.get(user_id)
-    return render_template("user.html", user=user)
+    dates = Meal.query.filter_by(date=date).all()
+
+    return render_template("user.html", user=user, dates=dates)
 
 @app.route('/logout')
 def logout():
