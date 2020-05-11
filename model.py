@@ -41,7 +41,6 @@ class Food(db.Model):
                          primary_key=True)
     name = db.Column(db.String(100))
     carbs = db.Column(db.Integer)
-    # user = db.relationship('User', backref=db.backref('food'))
 
     def __repr__(self):
         """Provide helpful representation when printed."""
