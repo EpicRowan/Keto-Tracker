@@ -31,35 +31,35 @@ class User(db.Model):
         return f"<User user_id={self.user_id} email={self.email}>"
 
 
-# class Food(db.Model):
-#     """Food info pulled from database"""
+class Food(db.Model):
+    """Food info pulled from database"""
 
-#     __tablename__ = "foods"
+    __tablename__ = "foods"
 
-#     food_id = db.Column(db.Integer,
-#                          autoincrement=True,
-#                          primary_key=True)
-#     name = db.Column(db.String(100))
-#     carbs = db.Column(db.Integer)
+    food_id = db.Column(db.Integer,
+                         autoincrement=True,
+                         primary_key=True)
+    name = db.Column(db.String(100))
+    carbs = db.Column(db.Integer)
 
-#     def __repr__(self):
-#         """Provide helpful representation when printed."""
+    def __repr__(self):
+        """Provide helpful representation when printed."""
 
-#         return f"<Food food_id={self.food_id} name={self.name}>"
+        return f"<Food food_id={self.food_id} name={self.name}>"
 
 
-# class Meal(db.Model):
-#     """Meal info inputed by user"""
+class Meal(db.Model):
+    """Meal info inputed by user"""
 
-#     __tablename__ = "meals"
+    __tablename__ = "meals"
 
-#     meal_id = db.Column(db.Integer,
-#                           autoincrement=True,
-#                           primary_key=True)
-#     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
-#     meal_type = db.Column(db.String(100))
-#     food_id = db.Column(db.Integer, db.ForeignKey('foods.food_id'))
-#     user = db.relationship('User', backref=db.backref('meal'))
+    meal_id = db.Column(db.Integer,
+                          autoincrement=True,
+                          primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
+    meal_type = db.Column(db.String(100))
+    food_id = db.Column(db.Integer, db.ForeignKey('foods.food_id'))
+    user = db.relationship('User', backref=db.backref('meal'))
 
 class Date(db.Model):
     """Dates used by user."""
@@ -71,8 +71,8 @@ class Date(db.Model):
                           primary_key=True)
     date = db.Column(db.DateTime())
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
-    # meal_id = db.Column(db.Integer,db.ForeignKey('users.user_id'))
-    user = db.relationship('User', backref=db.backref('meal'))
+    meal_id = db.Column(db.Integer,db.ForeignKey('meals.meal_id'))
+    user = db.relationship('User', backref=db.backref('date'))
     
 
     def __repr__(self):
