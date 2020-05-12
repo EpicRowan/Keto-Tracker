@@ -69,6 +69,7 @@ class Date(db.Model):
     date_id = db.Column(db.Integer,
                           autoincrement=True,
                           primary_key=True)
+    date = db.Column(db.DateTime())
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
     # meal_id = db.Column(db.Integer,db.ForeignKey('users.user_id'))
     user = db.relationship('User', backref=db.backref('meal'))
