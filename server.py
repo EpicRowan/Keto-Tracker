@@ -79,7 +79,9 @@ def user_detail(user_id):
     """Show info about user."""
 
     user = User.query.get(user_id)
-    date = Date.query.filter_by(user=user).all()
+    # date = Date.query.filter_by(user=user).all()
+    # date = Date.query.filter(Date.user.user_id).first()
+
 
     return render_template("user.html", user=user, date=date)
 
