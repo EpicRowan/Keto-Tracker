@@ -79,7 +79,7 @@ def user_detail(user_id):
     """Show info about user."""
 
     user = User.query.get(user_id)
-    date = Date.query.filter_by(user_id=user.user_id).all()
+    date = Date.query.filter_by(user_id=user.user_id).first()
     # date = Date.query.filter(Date.user.user_id).first()
 
 

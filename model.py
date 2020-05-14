@@ -72,16 +72,14 @@ class Date(db.Model):
     date = db.Column(db.DateTime())
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
     meal_id = db.Column(db.Integer,db.ForeignKey('meals.meal_id'))
-    user = db.relationship('User', backref=db.backref('date'))
+    # user = db.relationship('User', backref=db.backref('date'))
     
 
     def __repr__(self):
         """Provide helpful representation when printed."""
 
         return f"""<meal_id={self.meal_id} 
-                   movie_id={self.movie_id} 
-                   user_id={self.user_id} 
-                   score={self.score}>"""
+                   user_id={self.user_id}>"""
 
 
 #####################################################################
