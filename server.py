@@ -85,6 +85,7 @@ def user_detail(user_id):
 
     return render_template("user.html", user=user, date=date)
 
+
 # @app.route("/users/<int:user_id>")
 # def user_detail(user_id):
 #     """Show info about user."""
