@@ -85,6 +85,17 @@ def user_detail(user_id):
 
     return render_template("user.html", user=user, date=date)
 
+# @app.route("/users/<int:user_id>")
+# def user_detail(user_id):
+#     """Show info about user."""
+
+#     user = User.query.get(user_id)
+#     date = Date.query.filter_by(user_id=user_id).all()
+#     # date = Date.query.filter(Date.user.user_id).fall)
+
+
+    return render_template("user.html", user=user, date=date)
+
 @app.route('/logout')
 def logout():
     """Log out."""
