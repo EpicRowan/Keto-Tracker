@@ -85,8 +85,13 @@ def user_detail(user_id):
 
     return render_template("user.html", user=user, date=date)
 
-@app.route('/entry', methods=['GET'])
-def new_entry(user_id):
+@app.route('/new', methods=['GET'])
+def entry_form():
+    """Show form for user signup."""
+    return render_template("entry.html")
+
+@app.route('/new', methods=['POST'])
+def new_entry():
     """Process registration."""
 
     # Get form variables
