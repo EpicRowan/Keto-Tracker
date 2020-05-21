@@ -85,16 +85,32 @@ def user_detail(user_id):
 
     return render_template("user.html", user=user, date=date)
 
+@app.route('/entry', methods=['GET'])
+def new_entry():
+    """Process registration."""
 
-@app.route("/users/<int:user_id>/<date>")
-def date_detail(user_id):
-    """Show info about user."""
+    # Get form variables
+    date = request.form["date"]
+    food = request.form["food"]
 
-    user = User.query.get(user_id)
-    user = User.query.get(user_id)
+    new_entry = Meal(date=date, food=food)
+
+    db.session.add(new_entry)
+    db.session.commit()
+
+    flash(f"Food added.")
+    return redirect("/entry")
 
 
-    return render_template("date.html", user=user, date=date)
+# @app.route("/users/<int:user_id>/<date>")
+# def date_detail(user_id):
+#     """Show info about user."""
+
+#     user = User.query.get(user_id)
+#     user = User.query.get(user_id)
+
+
+#     return render_template("date.html", user=user, date=date)
 
 @app.route('/logout')
 def logout():
