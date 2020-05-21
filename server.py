@@ -4,7 +4,7 @@ from flask import Flask, render_template, redirect, request, flash, session
 
 from flask_debugtoolbar import DebugToolbarExtension
 
-from model import User, Date, connect_to_db, db
+from model import User, Date, Meal, connect_to_db, db
 
 
 app = Flask(__name__)
@@ -74,7 +74,7 @@ def login_process():
     flash("Logged in")
     return redirect(f"/users/{user.user_id}")
 
-@app.route("/users/<int:user_id>")
+@app.route("/users/")
 def user_detail(user_id):
     """Show info about user."""
 
@@ -85,7 +85,7 @@ def user_detail(user_id):
 
     return render_template("user.html", user=user, date=date)
 
-@app.route('/new', methods=['GET'])
+@app.route('/new/', methods=['GET'])
 def entry_form():
     """Show form for user signup."""
     return render_template("entry.html")
@@ -98,7 +98,7 @@ def new_entry():
     date = request.form["date"]
     food = request.form["food"]
 
-    new_entry = Meal(date=date, food=food)
+    new_entry = Meal(food=food)
 
     db.session.add(new_entry)
     db.session.commit()
