@@ -74,7 +74,7 @@ def login_process():
     flash("Logged in")
     return redirect(f"/users/{user.user_id}")
 
-@app.route("/users/")
+@app.route("/users/<int:user_id>")
 def user_detail(user_id):
     """Show info about user."""
 
@@ -96,15 +96,15 @@ def new_entry():
 
     # Get form variables
     date = request.form["date"]
-    food = request.form["food"]
+    food_id = request.form["food"]
 
-    new_entry = Meal(food=food)
+    new_date = Date(date=date)
 
-    db.session.add(new_entry)
+    db.session.add(new_date)
     db.session.commit()
 
     flash(f"Food added.")
-    return redirect("/entry")
+    return redirect("/")
 
 
 # @app.route("/users/<int:user_id>/<date>")
