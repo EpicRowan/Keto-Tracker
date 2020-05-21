@@ -86,7 +86,7 @@ def user_detail(user_id):
     return render_template("user.html", user=user, date=date)
 
 @app.route('/entry', methods=['GET'])
-def new_entry():
+def new_entry(user_id):
     """Process registration."""
 
     # Get form variables
