@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+  <h1>New Entry</h1>
+  <form action="/entry" method="GET">
+
+    <div>
+      <label>Date:
+        <input type="date" name="date" required>
+      </label>
+    </div>
+
+    <div>
+      <label>Food:
+        <input type="text" name="food" required>
+      </label>
+    </div>
+
+    <div>
+      <input type="submit" value="New Entry">
+    </div>
+
+  </form>
+
+
+{% endblock %}
