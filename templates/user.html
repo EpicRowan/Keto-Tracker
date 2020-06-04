@@ -1,6 +1,11 @@
 {% extends 'base.html' %}
 {% block content %}
 
+<center>
+  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+</center>
+  <div class="well">
+
   <h1> Welcome {{ user.email }} </h1>
 
   <a href="/new"> <h2> New Entry</h2></a>
@@ -10,6 +15,6 @@
 <li><a href="/users/{{user.user_id}}/{{item.date}}">{{item.date}}</li>
 {% endfor %}
  
-
+</div>
 
 {% endblock %}
