@@ -1,11 +1,18 @@
 {% extends 'base.html' %}
 {% block content %}
+<head>
+    <link rel="stylesheet"
+          href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.css"/>
+    <link rel="stylesheet" href="/static/css/homepage.css">
+    <title>Keto Tracker</title>
+</head>
+	<h1>Welcome to Keto Tracker</h1>
 
-<h1>Welcome to Keto Tracker</h1>
-
-<h2>Please login or register</h2>
-<a href="/login">Login</a>
-<a href="/register">Register</a>
-
+	<h2>Please login or register</h2>
+		<a href="/login">Login</a>
+		<a href="/register">Register</a>
+		
+	<div class="site-wrapper">
+    	<div class="site-wrapper-inner">
 
 {% endblock %}
