@@ -6,11 +6,10 @@ from flask_debugtoolbar import DebugToolbarExtension
 
 from model import User, Date, Meal, connect_to_db, db
 
-
 app = Flask(__name__)
 
 # Required to use Flask sessions and the debug toolbar
-app.secret_key = "ABC"
+app.secret_key = "megasecret"
 
 # Normally, if you use an undefined variable in Jinja2, it fails
 # silently. This is horrible. Fix this so that, instead, it raises an
@@ -23,11 +22,15 @@ def index():
     """Homepage."""
     return render_template("homepage.html")
 
+
+
 @app.route('/register', methods=['GET'])
 def register_form():
     """Show form for user signup."""
 
     return render_template("register_form.html")
+
+
 
 @app.route('/register', methods=['POST'])
 def register_process():
@@ -45,11 +48,14 @@ def register_process():
     flash(f"User {email} added.")
     return redirect("/")
 
+
+
 @app.route('/login', methods=['GET'])
 def login_form():
     """Show login form."""
 
     return render_template("login_form.html")
+
 
 @app.route('/login', methods=['POST'])
 def login_process():
@@ -74,6 +80,7 @@ def login_process():
     flash("Logged in")
     return redirect(f"/users/{user.user_id}")
 
+
 @app.route("/users/<int:user_id>")
 def user_detail(user_id):
     """Show info about user."""
@@ -82,17 +89,20 @@ def user_detail(user_id):
     date = Date.query.filter_by(user_id=user_id).all()
     # date = Date.query.filter(Date.user.user_id).fall)
 
-
     return render_template("user.html", user=user, date=date)
+
 
 @app.route('/new/', methods=['GET'])
 def entry_form():
     """Show form for user signup."""
     return render_template("entry.html")
 
+
 @app.route('/new', methods=['POST'])
 def new_entry():
     """Process registration."""
+
+    user_id = session["user_id"] 
 
     # Get form variables
     date = request.form["date"]
@@ -104,7 +114,7 @@ def new_entry():
     db.session.commit()
 
     flash(f"Food added.")
-    return redirect("/")
+    return redirect("/login")
 
 
 # @app.route("/users/<int:user_id>/<date>")
@@ -116,6 +126,7 @@ def new_entry():
 
 
 #     return render_template("date.html", user=user, date=date)
+
 
 @app.route('/logout')
 def logout():
