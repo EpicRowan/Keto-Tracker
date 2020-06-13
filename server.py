@@ -124,17 +124,6 @@ def new_entry(user_id):
     return redirect("/login")
 
 
-# @app.route("/users/<int:user_id>/<date>")
-# def date_detail(user_id):
-#     """Show info about user."""
-
-#     user = User.query.get(user_id)
-#     user = User.query.get(user_id)
-
-
-#     return render_template("date.html", user=user, date=date)
-
-
 @app.route('/logout')
 def logout():
     """Log out."""
