@@ -35,7 +35,6 @@ def register_form():
     return render_template("register_form.html")
 
 
-
 @app.route('/register', methods=['POST'])
 def register_process():
     """Process registration."""
@@ -53,9 +52,10 @@ def register_process():
     db.session.add(new_user)
     db.session.commit()
 
-    flash(f"User {email} added.")
-    return redirect("/")
+    # session["user_id"] = user_id
 
+    flash(f"User {email} added.")
+    return redirect(f"/login")
 
 
 @app.route('/login', methods=['GET'])
@@ -95,19 +95,18 @@ def user_detail(user_id):
 
     user = User.query.get(user_id)
     date = Date.query.filter_by(user_id=user_id).all()
-    # date = Date.query.filter(Date.user.user_id).fall)
 
-    return render_template("user.html", user=user, date=date)
+    return render_template("user.html", user_id=user_id, user=user, date=date)
 
 
-@app.route('/new/', methods=['GET'])
-def entry_form():
+@app.route('/users/<int:user_id>/new', methods=['GET'])
+def new_food_entry_form(user_id):
     """Show form for user signup."""
     return render_template("entry.html")
 
 
-@app.route('/new', methods=['POST'])
-def new_entry():
+@app.route('/users/<int:user_id>/new', methods=['POST'])
+def new_entry(user_id):
     """Process registration."""
 
     user_id = session["user_id"] 

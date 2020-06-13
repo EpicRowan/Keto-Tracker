@@ -8,7 +8,7 @@
 
   <h1> Welcome {{ user.email }} </h1>
 
-  <a href="/new"> <h2> New Entry</h2></a>
+  <a href="/users/{{user_id}}/new"> <h2> New Entry</h2></a>
 
     <h2> Past Entries</h2>
 {% for item in date %}
