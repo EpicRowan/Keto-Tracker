@@ -102,7 +102,7 @@ def user_detail(user_id):
 @app.route('/users/<int:user_id>/new', methods=['GET'])
 def new_food_entry_form(user_id):
     """Show form for user signup."""
-    return render_template("entry.html")
+    return render_template("entry.html", user_id=user_id)
 
 
 @app.route('/users/<int:user_id>/new', methods=['POST'])
@@ -121,7 +121,7 @@ def new_entry(user_id):
     db.session.commit()
 
     flash(f"Food added.")
-    return redirect("/login")
+    return redirect(f"/users/{user.user_id}", user_id=user_id)
 
 
 @app.route('/logout')
