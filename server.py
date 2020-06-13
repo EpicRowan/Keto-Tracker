@@ -121,7 +121,7 @@ def new_entry(user_id):
     db.session.commit()
 
     flash(f"Food added.")
-    return redirect(f"/users/{user.user_id}", user_id=user_id)
+    return redirect(f"/users/{user_id}")
 
 
 @app.route('/logout')
