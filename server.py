@@ -24,6 +24,7 @@ def index():
     if user_id:
         return redirect(f"/users/{user_id}")
 
+    print(session)
     return render_template("homepage.html")
 
 
@@ -42,6 +43,10 @@ def register_process():
     # Get form variables
     email = request.form["email"]
     password = request.form["password"]
+
+    if User.query.filter_by(email=email).first():
+    	flash("An account with this email address already exists.")
+    	return redirect("/register")
 
     new_user = User(email=email, password=password)
 
