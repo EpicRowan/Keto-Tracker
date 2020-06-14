@@ -91,7 +91,7 @@ def login_process():
 
 @app.route("/users/<int:user_id>")
 def user_detail(user_id):
-    """Show info about user."""
+    """Show user's page"""
 
     user = User.query.get(user_id)
     date = Date.query.filter_by(user_id=user_id).all()
@@ -101,13 +101,13 @@ def user_detail(user_id):
 
 @app.route('/users/<int:user_id>/new', methods=['GET'])
 def new_food_entry_form(user_id):
-    """Show form for user signup."""
+    """Show form for user's new entry."""
     return render_template("entry.html", user_id=user_id)
 
 
 @app.route('/users/<int:user_id>/new', methods=['POST'])
 def new_entry(user_id):
-    """Process registration."""
+    """Process new food entry."""
 
     user_id = session["user_id"] 
 
