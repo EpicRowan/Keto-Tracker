@@ -96,6 +96,9 @@ def user_detail(user_id):
     user = User.query.get(user_id)
     date = Date.query.filter_by(user_id=user_id).all()
 
+    #Simplified data model plan
+    # date = User.date.query.filter_by(user_id=user_id).all()
+
     return render_template("user.html", user_id=user_id, user=user, date=date)
 
 
