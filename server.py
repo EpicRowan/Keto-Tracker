@@ -123,6 +123,10 @@ def new_entry(user_id):
     flash(f"Food added.")
     return redirect(f"/users/{user_id}")
 
+# @app.route('/users/<user.user_id>/<meal.date>')
+# def meal_details(user_id, date):
+
+# 	return render_template("meal_details.html")
 
 @app.route('/logout')
 def logout():
