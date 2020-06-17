@@ -1,3 +1,5 @@
+import requests
+
 from jinja2 import StrictUndefined
 
 from flask import Flask, render_template, redirect, request, flash, session
@@ -127,6 +129,10 @@ def new_entry(user_id):
 # def meal_details(user_id, date):
 
 # 	return render_template("meal_details.html")
+
+# def search(searched):
+# 	res = requests.get('https://...com/search?term={searched}')
+# 	search_results = res.json()
 
 @app.route('/logout')
 def logout():
