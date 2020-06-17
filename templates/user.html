@@ -11,10 +11,10 @@
   <a href="/users/{{user_id}}/new"> <h2> New Entry</h2></a>
 
     <h2> Past Entries</h2>
-    {% if meals}
+    {% if meals %}
 		{% for meal in meals %}
 <li><a href="/users/{{user.user_id}}/{{meal.date}}">{{meal.date}}</li>
-{		% endfor %}
+		{% endfor %}
 	{% endif %}
 </div>
 
