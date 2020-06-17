@@ -115,9 +115,9 @@ def new_entry(user_id):
     date = request.form["date"]
     food_id = request.form["food"]
 
-    new_date = Date(date=date)
+    new_meal = Meal(date=date, user_id=user_id)
 
-    db.session.add(new_date)
+    db.session.add(new_meal)
     db.session.commit()
 
     flash(f"Food added.")
