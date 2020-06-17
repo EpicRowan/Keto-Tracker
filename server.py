@@ -94,9 +94,9 @@ def user_detail(user_id):
     """Show user's page"""
 
     user = User.query.get(user_id)
-    date = User.date.query.filter_by(user_id=user_id).all()
+    meals = Meal.query.filter_by(user_id=user_id).all()
 
-    return render_template("user.html", user_id=user_id, user=user, date=date)
+    return render_template("user.html", user_id=user_id, user=user, meals=meals)
 
 
 @app.route('/users/<int:user_id>/new', methods=['GET'])

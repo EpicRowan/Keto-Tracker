@@ -24,7 +24,6 @@ class User(db.Model):
                         primary_key=True)
     email = db.Column(db.String(64), nullable=True)
     password = db.Column(db.String(64), nullable=True)
-    date = db.Column(db.DateTime())
 
     def __repr__(self):
         """Provide helpful representation when printed."""
@@ -61,6 +60,7 @@ class Meal(db.Model):
     meal_type = db.Column(db.String(100))
     food_id = db.Column(db.Integer, db.ForeignKey('foods.food_id'))
     user = db.relationship('User', backref=db.backref('meal'))
+    date = db.Column(db.DateTime())
 
 # class Date(db.Model):
 #     """Dates used by user."""
