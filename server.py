@@ -130,9 +130,12 @@ def new_entry(user_id):
 @app.route('/search_results')
 # def search_food(searched):
 	# params = searched
-# 	res = requests.get('https://api.spoonacular.com/food/products/search?query=params&apiKey=config.api_key')
-# 	res = requests.get('https://api.edamam.com/api/food-database/v2/parser?ingr=red%20apple&app_id=config.app_id&app_key=config.api_key')
+	params = params.replace(" ", "%20")
+# 	res = requests.get('https://api.edamam.com/api/food-database/v2/parser?ingr=params&app_id=config.app_id&app_key=config.api_key')
 # 	search_results = res.json()
+	["text"] = name
+	["hints"]["food"]["CHOCDF"] = carbs
+	
 
 
 # @app.route('/users/<user.user_id>/<meal.date>')
