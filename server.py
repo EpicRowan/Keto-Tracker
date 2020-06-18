@@ -1,5 +1,7 @@
 import requests
 
+import config
+
 from jinja2 import StrictUndefined
 
 from flask import Flask, render_template, redirect, request, flash, session
@@ -131,7 +133,8 @@ def new_entry(user_id):
 # 	return render_template("meal_details.html")
 
 # def search(searched):
-# 	res = requests.get('https://...com/search?term={searched}')
+	params = searched
+# 	res = requests.get('https://api.spoonacular.com/food/products/search?query=params&apiKey=config.api_key')
 # 	search_results = res.json()
 
 @app.route('/logout')
