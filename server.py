@@ -127,15 +127,19 @@ def new_entry(user_id):
     flash(f"Food added.")
     return redirect(f"/users/{user_id}")
 
+@app.route('/search_results')
+# def search_food(searched):
+	# params = searched
+# 	res = requests.get('https://api.spoonacular.com/food/products/search?query=params&apiKey=config.api_key')
+# 	res = requests.get('https://api.edamam.com/api/food-database/v2/parser?ingr=red%20apple&app_id=config.app_id&app_key=config.api_key')
+# 	search_results = res.json()
+
+
 # @app.route('/users/<user.user_id>/<meal.date>')
 # def meal_details(user_id, date):
 
 # 	return render_template("meal_details.html")
 
-# def search(searched):
-	params = searched
-# 	res = requests.get('https://api.spoonacular.com/food/products/search?query=params&apiKey=config.api_key')
-# 	search_results = res.json()
 
 @app.route('/logout')
 def logout():
