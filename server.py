@@ -115,17 +115,17 @@ def new_entry(user_id):
 
     user_id = session["user_id"] 
 
-    # Get form variables
-    date = request.form["date"]
-    food_id = request.form["food"]
+    # # Get form variables
+    # date = request.form["date"]
+    searched = request.form["searched"]
 
-    new_meal = Meal(date=date, user_id=user_id)
+    # new_meal = Meal(date=date, user_id=user_id)
 
-    db.session.add(new_meal)
-    db.session.commit()
+    # db.session.add(new_meal)
+    # db.session.commit()
 
-    flash(f"Food added.")
-    return redirect(f"/users/{user_id}")
+    # flash(f"Food added.")
+    return redirect(f"/search_results", searched=searched)
 
 @app.route('/search_results')
 def search_food(searched):
@@ -133,8 +133,9 @@ def search_food(searched):
 	params = params.replace(" ", "%20")
 	res = requests.get('https://api.edamam.com/api/food-database/v2/parser?ingr=params&app_id=config.app_id&app_key=config.api_key')
 	search_results = res.json()
+	print(search_results)
 	name = search_results["text"]
-	carbs = search_results["hints"]["food"]["CHOCDF"]
+	carbs = search_results["hints"]["food"]["nutrients"]["CHOCDF"]
 
 	return render_template('search_results.html', name=name, carbs=carbs)
 
