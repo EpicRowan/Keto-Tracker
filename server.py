@@ -128,15 +128,15 @@ def new_entry(user_id):
     return redirect(f"/users/{user_id}")
 
 @app.route('/search_results')
-# def search_food(searched):
-	# params = searched
+def search_food(searched):
+	params = searched
 	params = params.replace(" ", "%20")
-# 	res = requests.get('https://api.edamam.com/api/food-database/v2/parser?ingr=params&app_id=config.app_id&app_key=config.api_key')
-# 	search_results = res.json()
-	["text"] = name
-	["hints"]["food"]["CHOCDF"] = carbs
-	
+	res = requests.get('https://api.edamam.com/api/food-database/v2/parser?ingr=params&app_id=config.app_id&app_key=config.api_key')
+	search_results = res.json()
+	name = search_results["text"]
+	carbs = search_results["hints"]["food"]["CHOCDF"]
 
+	return render_template('search_results.html', name=name, carbs=carbs)
 
 # @app.route('/users/<user.user_id>/<meal.date>')
 # def meal_details(user_id, date):
