@@ -127,7 +127,7 @@ def new_entry(user_id):
 		# foods.append(search_results["hints"][i]["food"]["nutrients"]["CHOCDF"])
 		i+=1
 		
-	return render_template('search_results.html', foods=foods)
+	return render_template('search_results.html', user_id=user_id, foods=foods)
 
 @app.route('/search_results')
 def search_food(searched):
@@ -141,9 +141,9 @@ def search_food(searched):
 
 	return render_template('search_results.html', name=name, carbs=carbs)
 
-# @app.route('/users/<user.user_id>/<meal.date>')
-# def meal_details(user_id, date):
-
+# @app.route('"/users/<user.user_id>/new/date"')
+# def meal_details(user_id):
+	# session["user_id"] = user.user_id
 # 	return render_template("meal_details.html")
 
 
