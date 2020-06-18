@@ -5,8 +5,10 @@
   <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
 </center>
   <div class="well">
-
-  <h1> {{ foods }}</h1>
+	<h1>  Select correct food item</h1>
+  		{% for item in foods %}
+  			<li><a href="">{{item}} : {{foods[item]}} carbs </li>
+		 {% endfor %}
 
 </div>
 

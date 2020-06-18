@@ -120,16 +120,13 @@ def new_entry(user_id):
 	params = searched.replace(" ", "%20")
 	res = requests.get(f'https://api.edamam.com/api/food-database/v2/parser?ingr={params}&app_id={config.app_id}&app_key={config.api_key}')
 	search_results = res.json()
-	foods = []
+	foods = {}
 	i = 0
 	for item in search_results.values():
-		foods.append(search_results["hints"][i]["food"]["label"])
-		foods.append(search_results["hints"][i]["food"]["nutrients"]["CHOCDF"])
+		foods.update([(search_results["hints"][i]["food"]["label"], search_results["hints"][i]["food"]["nutrients"]["CHOCDF"])])
+		# foods.append(search_results["hints"][i]["food"]["nutrients"]["CHOCDF"])
 		i+=1
-		# foods.append(item[text])
-		# foods.append(item["hints"][0]["food"]["nutrients"]["CHOCDF"])
-
-	# return render_template('search_results.html', search_results=search_results)
+		
 	return render_template('search_results.html', foods=foods)
 
 @app.route('/search_results')
