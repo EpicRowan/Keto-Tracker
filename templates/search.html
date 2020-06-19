@@ -3,14 +3,19 @@
 
 
 <!-- Search form -->
+<center>
+  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+</center>
+  <div class="well">
 <form action="/search_results" method="POST">
 
 <div class="md-form mt-0">
-  <h1><font color="white"><label>Food:
-  <input class="form-control" type="text" name="searched" placeholder="Search for for nutrition info" aria-label="Search"></label></font>
+  <h1><label>Food search:
+  <input class="form-control" type="text" name="searched" placeholder="Search for for nutrition info" aria-label="Search"></label>
 </div>
     <div>
       <input type="submit" value="Search">
+    </div>
     </div>
    </form>
 {% endblock %}

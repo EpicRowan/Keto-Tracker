@@ -6,10 +6,10 @@
 </center>
   <div class="well">
 	<h1>  Search Results</h1>
-  		{% for item in foods %}
+  		<h3>{% for item in foods %}
   			<li>{{item}} : {{foods[item]}} carbs </li>
-		 {% endfor %}
-
+		 {% endfor %} </h3>
+ <input type="button" value="Go back!" onclick="history.back()">
 </div>
 
 {% endblock %}
