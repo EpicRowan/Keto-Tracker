@@ -113,23 +113,21 @@ def new_food_entry_form(user_id):
 def new_entry(user_id):
 	"""Process new food entry."""
 
-	searched=request.form["searched"]
-	params = searched.replace(" ", "%20")
-	res = requests.get(f'https://api.edamam.com/api/food-database/v2/parser?ingr={params}&app_id={config.app_id}&app_key={config.api_key}')
-	search_results = res.json()
-	foods = {}
-	i = 0
-	for item in search_results.values():
-		foods.update([(search_results["hints"][i]["food"]["label"], search_results["hints"][i]["food"]["nutrients"]["CHOCDF"])])
-		# foods.append(search_results["hints"][i]["food"]["nutrients"]["CHOCDF"])
-		i+=1
 
 		#  Get form variables
 	user_id = session["user_id"] 
+	food = request.form["food"]
+	carbs = request.form["carbs"]
 	date = request.form["date"]
 	
+
+	new_meal = Meal(user_id=user_id,food=food, carbs=carbs, date=date)
+
+	db.session.add(new_meal)
+	db.session.commit()
+	
 		
-	return render_template('search_results.html', user_id=user_id, foods=foods)
+	return redirect(f"/users/{user_id}")
 
 @app.route('/search')
 def search():

@@ -10,11 +10,6 @@
   <form action="/users/{{user_id}}/new" method="POST">
 
     <div>
-      <label>Date:
-        <input type="date" name="date" required>
-      </label>
-    </div>
-    <div>
       <label>Food Name:
         <input type="text" name="food" required>
       </label>
@@ -23,12 +18,16 @@
       <label>Carb total:
         <input type="text" name="carbs" required>
       </label>
+ 
+    <div>
+      <label>Date:
+        <input type="date" name="date" required>
+      </label>
     </div>
-
     <div>
       <input type="submit" value="New Entry">
     </div>
-
+   </div>
   </form>
 </div>
 
