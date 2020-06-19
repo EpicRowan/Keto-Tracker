@@ -131,22 +131,25 @@ def new_entry(user_id):
 		
 	return render_template('search_results.html', user_id=user_id, foods=foods)
 
-@app.route('/search_results')
-def search()
+@app.route('/search')
+def search():
 
 	return render_template('search.html')
-	
-# @app.route('/search_results')
-# def search_fresults(searched):
-# 	params = searched
-# 	params = params.replace(" ", "%20")
-# 	res = requests.get('https://api.edamam.com/api/food-database/v2/parser?ingr=params&app_id=config.app_id&app_key=config.api_key')
-# 	search_results = res.json()
-# 	print(search_results)
-# 	name = search_results["text"]
-# 	carbs = search_results["hints"]["food"]["nutrients"]["CHOCDF"]
 
-# 	return render_template('search_results.html', name=name, carbs=carbs)
+@app.route('/search_results', methods=["POST"])
+def search_results():
+	searched=request.form["searched"]
+	params = searched.replace(" ", "%20")
+	res = requests.get(f'https://api.edamam.com/api/food-database/v2/parser?ingr={params}&app_id={config.app_id}&app_key={config.api_key}')
+	search_results = res.json()
+	foods = {}
+	i = 0
+	for item in search_results.values():
+		foods.update([(search_results["hints"][i]["food"]["label"], search_results["hints"][i]["food"]["nutrients"]["CHOCDF"])])
+		# foods.append(search_results["hints"][i]["food"]["nutrients"]["CHOCDF"])
+		i+=1
+		
+	return render_template('search_results.html', foods=foods)
 
 # @app.route('"/users/<user.user_id>/new/date"')
 # def meal_details(user_id):

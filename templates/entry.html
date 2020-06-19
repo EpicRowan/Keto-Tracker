@@ -9,17 +9,16 @@
   <h1>New Entry</h1>
   <form action="/users/{{user_id}}/new" method="POST">
 
-<!-- Search form -->
-<div class="md-form mt-0">
-  <label>Food:
-  <input class="form-control" type="text" name="searched" placeholder="Search for for nutrition info" aria-label="Search"></label>
-</div>
     <div>
       <label>Date:
         <input type="date" name="date" required>
       </label>
     </div>
-
+    <div>
+      <label>Food Name:
+        <input type="text" name="date" required>
+      </label>
+    </div>
     <div>
       <input type="submit" value="New Entry">
     </div>

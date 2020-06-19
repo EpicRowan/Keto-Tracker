@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<!-- Search form -->
+<form action="/search_results" method="POST">
+
+<div class="md-form mt-0">
+  <h1><font color="white"><label>Food:
+  <input class="form-control" type="text" name="searched" placeholder="Search for for nutrition info" aria-label="Search"></label></font>
+</div>
+    <div>
+      <input type="submit" value="Search">
+    </div>
+   </form>
+{% endblock %}
