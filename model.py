@@ -57,8 +57,10 @@ class Meal(db.Model):
                           autoincrement=True,
                           primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
-    meal_type = db.Column(db.String(100))
-    food_id = db.Column(db.Integer, db.ForeignKey('foods.food_id'))
+    food = db.Column(db.String(100))
+    carbs = db.Column(db.Integer)
+    # meal_type = db.Column(db.String(100))
+    # food_id = db.Column(db.Integer, db.ForeignKey('foods.food_id'))
     user = db.relationship('User', backref=db.backref('meal'))
     date = db.Column(db.DateTime())
 
