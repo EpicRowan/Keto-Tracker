@@ -1,7 +1,6 @@
 body {
-    background: #333 url("/static/img/keto.jpg");
+    background: #333 url("/static/img/keto.jpg") no-repeat center center fixed;
     background-size: cover;
-
     color: blue;
     text-align: center;
 }
