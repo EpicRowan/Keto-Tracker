@@ -149,11 +149,6 @@ def search_results():
 		
 	return render_template('search_results.html', foods=foods)
 
-# @app.route('"/users/<user.user_id>/new/date"')
-# def meal_details(user_id):
-	# session["user_id"] = user.user_id
-# 	return render_template("meal_details.html")
-
 
 @app.route('/logout')
 def logout():
