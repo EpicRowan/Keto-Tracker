@@ -106,6 +106,7 @@ def user_detail(user_id):
 @app.route('/users/<int:user_id>/new', methods=['GET'])
 def new_food_entry_form(user_id):
 	"""Show form for user's new entry."""
+	
 	return render_template("entry.html", user_id=user_id)
 
 
@@ -131,11 +132,16 @@ def new_entry(user_id):
 
 @app.route('/search')
 def search():
+	"""Redirect to Edam food API search"""
+
 
 	return render_template('search.html')
 
+
 @app.route('/search_results', methods=["POST"])
 def search_results():
+	"""Search the Edam food API for food name and carb count"""
+
 	searched=request.form["searched"]
 	params = searched.replace(" ", "%20")
 	res = requests.get(f'https://api.edamam.com/api/food-database/v2/parser?ingr={params}&app_id={config.app_id}&app_key={config.api_key}')
@@ -144,7 +150,6 @@ def search_results():
 	i = 0
 	for item in search_results.values():
 		foods.update([(search_results["hints"][i]["food"]["label"], search_results["hints"][i]["food"]["nutrients"]["CHOCDF"])])
-		# foods.append(search_results["hints"][i]["food"]["nutrients"]["CHOCDF"])
 		i+=1
 		
 	return render_template('search_results.html', foods=foods)
