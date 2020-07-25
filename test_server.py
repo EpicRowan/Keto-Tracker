@@ -31,61 +31,40 @@ class TestFlaskRoutes(unittest.TestCase):
 
       # Routes to be tested
 
-    @app.route('/register', methods=['GET'])
-	def test_register_form(self):
-	"""Show form for user signup."""
-
-
-	@app.route('/register', methods=['POST'])
-	def test_register_process(self):
-	"""Process registration."""
-
-	# Get form variables
-	email = request.form["email"]
-	password = request.form["password"]
-
-	if User.query.filter_by(email=email).first():
-		flash("An account with this email address already exists.")
-		return redirect("/register")
-
-	new_user = User(email=email, password=password)
-
-	db.session.add(new_user)
-	db.session.commit()
-
-	# session["user_id"] = user_id
-
-	flash(f"User {email} added.")
-	return redirect(f"/login")
-
-
-	@app.route('/login', methods=['GET'])
-	def test_login_form(self):
+    def test_login_form(self):
 	"""Show login form."""
+		client = server.app.test_client()
+    	result = client.get('/')
+    	self.assertIn(b'Login', result.data)
 
-
-	@app.route('/login', methods=['POST'])
 	def test_login_process(self):
 	"""Process login."""
 
-	# Get form variables
-	email = request.form["email"]
-	password = request.form["password"]
+	    result = self.client.post("/login",
+                                  data={"Email": "rachel@rachel.com", "Password": "123"},
+                                  follow_redirects=True)
+        self.assertIn(b"Welcome rachel@rachel.com", result.data)
 
-	user = User.query.filter_by(email=email).first()
 
-	if not user:
-		flash("No such user", 'error')
-		return redirect("/login")
+	def test_register_form(self):
+	"""Show form for user signup."""
+		client = server.app.test_client()
+    	result = client.get('/register')
+    	self.assertIn(b'Register', result.data)
 
-	if user.password != password:
-		flash("Incorrect password", 'error')
-		return redirect("/login")
 
-	session["user_id"] = user.user_id
+	def test_register_process(self):
+	"""Process registration."""
+	    result = self.client.post("/register",
+                                  data={"Email": "joe@joe.com", "Password": "123"},
+                                  follow_redirects=True)
+        self.assertIn(b"User joe@joe.com added.", result.data)
 
-	flash("Logged in")
-	return redirect(f"/users/{user.user_id}")
+	def test_logout(self):
+	"""Log out."""
+		client = server.app.test_client()
+    	result = client.get('/logout')
+    	self.assertIn(b'Logged Out', result.data)
 
 
 	@app.route("/users/<int:user_id>")
@@ -150,13 +129,7 @@ class TestFlaskRoutes(unittest.TestCase):
 	return render_template('search_results.html', foods=foods)
 
 
-	@app.route('/logout')
-	def test_logout(self):
-	"""Log out."""
 
-	del session["user_id"]
-	flash("Logged Out")
-	return redirect("/")
 
 
 if __name__ == '__main__':

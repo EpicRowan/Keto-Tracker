@@ -2,7 +2,7 @@
 
 Keto Tracker is a full stack Web application that allows users to create an account, log in, look up the nutrition of foods, and record the foods eaten and the day. 
 
-The application has 93% test coverage using Python unittest.
+<!-- The application has 93% test coverage using Python unittest. -->
 
 
 ### Contents
@@ -64,7 +64,7 @@ $ python3 server.py
 ## <a name="features"></a>Features
 
 ### **Register and Login**
-<img src="/static/img/login.png" width="1000" height="200">
+<img src="/static/img/login.png" width="1000" height="500">
 
 Create a new account and log in to your account to save your entries in the database
 

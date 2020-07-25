@@ -32,7 +32,7 @@ class User(db.Model):
 
 
 class Food(db.Model):
-    """Food info pulled from database"""
+    """Food info from database"""
 
     __tablename__ = "foods"
 
@@ -59,24 +59,39 @@ class Meal(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
     food = db.Column(db.String(100))
     carbs = db.Column(db.Integer)
-    # meal_type = db.Column(db.String(100))
-    # food_id = db.Column(db.Integer, db.ForeignKey('foods.food_id'))
     user = db.relationship('User', backref=db.backref('meal'))
     date = db.Column(db.DateTime())
 
-# class Date(db.Model):
-#     """Dates used by user."""
 
-#     __tablename__ = "dates"
+def example_data():
+    """Create some sample data."""
 
-#     date_id = db.Column(db.Integer,
-#                           autoincrement=True,
-#                           primary_key=True)
+    # In case this is run more than once, empty out existing data
+
+    User.query.delete()
+    Food.query.delete()
+    Meal.query.delete()
+
+    print('example_data')
+
+    # Sample User table
+
+    U1 = User(user_id =1, email='joe@joe.com', password ="123")
+ 
+    # Sample Food 
+
+    F1 = Food(building_id =1, name='MegaCorp', liquefaction='Very High', at_risk= True)
+
+    # Sample Meal
+
+    M1 = Meal(building_id=4, status="Seismic Retrofitted", liquefaction= "yes")
     
-#     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
-#     meal_id = db.Column(db.Integer,db.ForeignKey('meals.meal_id'))
-#     # user = db.relationship('User', backref=db.backref('date'))
-    
+
+    db.session.add_all([U1, F1, M1])
+    db.session.commit()    
+
+
+
 
     def __repr__(self):
         """Provide helpful representation when printed."""
