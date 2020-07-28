@@ -52,14 +52,12 @@ class TestFlaskRoutes(unittest.TestCase):
 
 
 
-
-
-    # def test_register_process(self):
-    #     """Process registration."""
-    #     result = self.client.post("/register",
-    #                               data={"Email": "joe@joe.com", "Password": "123"},
-    #                               follow_redirects=True)
-    #     self.assertIn(b"User joe@joe.com added.", result.data)
+    def test_register_process(self):
+        """Process registration."""
+        result = self.client.post("/register",
+                                  data={"email": "joe@joe.com", "password": "123"},
+                                  follow_redirects=True)
+        self.assertIn(b"User joe@joe.com added.", result.data)
 
     # def test_logout(self):
     #     """Log out."""
