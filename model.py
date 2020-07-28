@@ -76,7 +76,7 @@ def example_data():
 
     # Sample User table
 
-    U1 = User(user_id =1, email='joe@joe.com', password ="123")
+    U1 = User(user_id =1, email='rachel@rachel.com', password ="123")
  
     # Sample Food 
 

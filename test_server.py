@@ -35,19 +35,20 @@ class TestFlaskRoutes(unittest.TestCase):
         self.assertIn(b'Register', result.data)
 
 
-    # def test_login_form(self):
-    #     """Show login form."""
-    #     client = server.app.test_client()
-    #     result = client.get('/')
-    #     self.assertIn(b'Login', result.data)
+    def test_login_form(self):
+        """Show login form."""
+   
+        result = self.client.get('/')
+        self.assertIn(b'Login', result.data)
 
-    # def test_login_process(self):
+
+    def test_login_process(self):
         """Process login."""
 
-        # result = self.client.post("/login",
-        #                           data={"Email": "rachel@rachel.com", "Password": "123"},
-        #                           follow_redirects=True)
-        # self.assertIn(b"Welcome", result.data)
+        result = self.client.post("/login",
+                                  data={"email": "rachel@rachel.com", "password": "123"},
+                                  follow_redirects=True)
+        self.assertIn(b"Welcome rachel@rachel.com", result.data)
 
 
 
