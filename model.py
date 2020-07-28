@@ -80,14 +80,12 @@ def example_data():
  
     # Sample Food 
 
-    F1 = Food(building_id =1, name='MegaCorp', liquefaction='Very High', at_risk= True)
 
     # Sample Meal
 
-    M1 = Meal(building_id=4, status="Seismic Retrofitted", liquefaction= "yes")
     
 
-    db.session.add_all([U1, F1, M1])
+    db.session.add_all([U1])
     db.session.commit()    
 
 
@@ -103,11 +101,11 @@ def example_data():
 #####################################################################
 # Helper functions
 
-def connect_to_db(app):
+def connect_to_db(app, db_name="postgresql:///carbs"):
     """Connect the database to our Flask app."""
 
     # Configure to use our PostgreSQL database
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///carbs'
+    app.config['SQLALCHEMY_DATABASE_URI'] = db_name
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     db.app = app
     db.init_app(app)
