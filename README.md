@@ -14,7 +14,7 @@ Keto Tracker is a full stack Web application that allows users to create an acco
 
 ## <a name="techstack"></a>Technologies
 
-Tech Stack: Python, JavaScript, HTML, CSS, Flask, Jinja, PostgreSQL, SQLAlchemy, Bootstrap, unittest <br>
+Tech Stack: Python, Flask, Jinja, HTML, CSS, PostgreSQL, SQLAlchemy, unittest <br>
 APIs: Edam food database 
 
 ### Prerequisites
@@ -39,7 +39,7 @@ Install dependencies:
 ```
 $ pip install -r requirements.txt
 ```
-Add your API key into the header scripts templates/homepage.html line 79
+Create Python file named "config.py" and add api_key="YOUR_KEY" and app_id ="YOUR_ID"
 
 Create database 'carbs':
 ```
