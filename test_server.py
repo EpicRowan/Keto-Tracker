@@ -1,6 +1,6 @@
 import unittest 
 from server import app 
-from model import db, connect_to_db, example_data
+from model import db, connect_to_db, example_data, User
 from flask import session
 
 app.secret_key = "megasecret"
@@ -62,6 +62,15 @@ class TestFlaskRoutes(unittest.TestCase):
                                   follow_redirects=True)
         self.assertIn(b"User joe@joe.com added.", result.data)
 
+  
+    # def test_user_detail(self):
+    #     """Show user's page"""
+
+    #     result = self.client.get("/users/1", 
+    #                              data={"user.email":"rachel@rachel.com"},)
+    #     self.assertIn(b"Welcome rachel@rachel.com", result.data)
+
+    
 
 class FlaskTestsLoggedIn(unittest.TestCase):
     """Flask tests with user logged in to session."""
@@ -86,7 +95,11 @@ class FlaskTestsLoggedIn(unittest.TestCase):
         self.assertIn(b'Logged Out', result.data)
 
 
+    # def test_user_detail(self):
+    #     """Show user's page"""
 
+    #     result = self.client.get("/users/1")
+    #     self.assertIn(b"Welcome rachel@rachel.com", result.data)
 
     # @app.route("/users/<int:user_id>")
     # def test_user_detail(self):

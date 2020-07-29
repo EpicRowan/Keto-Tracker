@@ -149,7 +149,7 @@ def search_results():
 	foods = {}
 	i = 0
 	for item in search_results.values():
-		foods.update([(search_results["hints"][i]["food"]["label"], search_results["hints"][i]["food"]["nutrients"]["CHOCDF"])])
+		foods.update([(search_results["hints"][i]["food"]["label"], int(search_results["hints"][i]["food"]["nutrients"]["CHOCDF"]))])
 		i+=1
 		
 	return render_template('search_results.html', foods=foods)
