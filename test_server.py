@@ -1,22 +1,26 @@
 import unittest 
 from server import app 
 from model import db, connect_to_db, example_data
+from flask import session
+
+app.secret_key = "megasecret"
 
 class TestFlaskRoutes(unittest.TestCase):
     """Test Flask routes."""
 
     def setUp(self):
-      """Stuff to do before every test."""
+        """Stuff to do before every test."""
 
-      self.client = app.test_client()
-      app.config['TESTING'] = True
+        # Get the Flask test client
+        self.client = app.test_client()
+        app.config['TESTING'] = True
 
-      # Connect to test database
-      connect_to_db(app,"postgresql:///testdb")
+        # Connect to test database
+        connect_to_db(app, "postgresql:///testdb")
 
-      # Create tables and add sample data
-      db.create_all()
-      example_data()
+        # Create tables and add sample data
+        db.create_all()
+        example_data()
 
     def tearDown(self):
       """Stuff to do after each test."""
@@ -51,7 +55,6 @@ class TestFlaskRoutes(unittest.TestCase):
         self.assertIn(b"Welcome rachel@rachel.com", result.data)
 
 
-
     def test_register_process(self):
         """Process registration."""
         result = self.client.post("/register",
@@ -59,11 +62,30 @@ class TestFlaskRoutes(unittest.TestCase):
                                   follow_redirects=True)
         self.assertIn(b"User joe@joe.com added.", result.data)
 
-    # def test_logout(self):
-    #     """Log out."""
-    #     client = server.app.test_client()
-    #     result = client.get('/logout')
-    #     self.assertIn(b'Logged Out', result.data)
+
+class FlaskTestsLoggedIn(unittest.TestCase):
+    """Flask tests with user logged in to session."""
+
+    def setUp(self):
+        """Stuff to do before every test."""
+
+        app.config['TESTING'] = True
+        app.config['SECRET_KEY'] = 'key'
+        self.client = app.test_client()
+
+        with self.client as c:
+            with c.session_transaction() as sess:
+                sess['user_id'] = 1
+
+
+    def test_logout(self):
+        """Log out."""
+    
+        result = self.client.get("/logout",follow_redirects=True)
+      
+        self.assertIn(b'Logged Out', result.data)
+
+
 
 
     # @app.route("/users/<int:user_id>")
