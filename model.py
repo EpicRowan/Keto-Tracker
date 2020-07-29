@@ -60,7 +60,7 @@ class Meal(db.Model):
     food = db.Column(db.String(100))
     carbs = db.Column(db.Integer)
     user = db.relationship('User', backref=db.backref('meal'))
-    date = db.Column(db.DateTime())
+    date = db.Column(db.Date())
 
 
 def example_data():

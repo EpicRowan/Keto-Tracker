@@ -15,7 +15,7 @@
     <h2> Past Entries</h2>
     {% if meals %}
 		{% for meal in meals %}
-<li><a href="/users/{{user.user_id}}/{{meal.date}}">{{meal.date}}</li>
+<li>{{meal.date}} Food: {{meal.food}} Carbs: {{meal.carbs}}</li>
 		{% endfor %}
 	{% endif %}
 </div>

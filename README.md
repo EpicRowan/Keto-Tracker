@@ -71,18 +71,14 @@ Create a new account and log in to your account to save your entries in the data
 ### **Search**
 
 
-<!-- 
-<img src="/static/img/help_tips.gif" width="1000" height="500"> -->
+<img src="/static/img/search.gif" width="1000" height="500">
 
-### **Browse food**
-
-fdfd
 
 ### **Record food and date**
 
 jjkjk
 
-<img src="/static/img/new_entry.png" width="1000" height="500">
+<img src="/static/img/new_entry.gif" width="1000" height="500">
 
 
 
