@@ -2,7 +2,7 @@ import unittest
 from server import app
 from model import db, connect_to_db, example_data, User
 from flask import session
-from users import get_user_detail
+
 
 app.secret_key = "megasecret"
 
@@ -137,25 +137,13 @@ class FlaskTestsLoggedIn(unittest.TestCase):
 
 
 
+    def test_search_results(self):
+        """Search the Edam food API for food name and carb count"""
 
-    # return render_template('search.html')
-
-
-    # @app.route('/search_results', methods=["POST"])
-    # def test_search_results(self):
-    # """Search the Edam food API for food name and carb count"""
-
-    # searched=request.form["searched"]
-    # params = searched.replace(" ", "%20")
-    # res = requests.get(f'https://api.edamam.com/api/food-database/v2/parser?ingr={params}&app_id={config.app_id}&app_key={config.api_key}')
-    # search_results = res.json()
-    # foods = {}
-    # i = 0
-    # for item in search_results.values():
-    #   foods.update([(search_results["hints"][i]["food"]["label"], search_results["hints"][i]["food"]["nutrients"]["CHOCDF"])])
-    #   i+=1
-        
-    # return render_template('search_results.html', foods=foods)
+        result = self.client.post("/search_results",
+                              data={"searched": "cookie"},
+                              follow_redirects=True)
+        self.assertEqual(result.status_code, 200)
 
 
 
