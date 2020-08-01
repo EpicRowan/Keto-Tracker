@@ -68,8 +68,9 @@ def example_data():
 
     # In case this is run more than once, empty out existing data
 
-    User.query.delete()
     Meal.query.delete()
+    User.query.delete()
+  
 
 
 
@@ -85,10 +86,10 @@ def example_data():
 
     # Sample Meal
 
-    # M1 = Meal(meal_id=1, user_id=1, food='pie', carbs=12, date='2020-07-07')
+    M1 = Meal(meal_id=1, user_id=1, food='pie', carbs=12, date='2020-07-07')
     
 
-    db.session.add_all([U1, U2])
+    db.session.add_all([U1, U2, M1])
     db.session.commit()    
 
 

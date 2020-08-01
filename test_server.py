@@ -71,8 +71,13 @@ class TestFlaskRoutes(unittest.TestCase):
         result = self.client.get("/users/1")
 
         self.assertIn(b"Welcome rachel@rachel.com", result.data)
+        self.assertIn(b"pie", result.data)
 
+    def test_new_food_entry_form(self):
+        """Show form for user's new entry."""
 
+        result = self.client.get('/users/1/new')
+        self.assertEqual(result.status_code, 200)
 
 
 class FlaskTestsLoggedIn(unittest.TestCase):
@@ -98,27 +103,8 @@ class FlaskTestsLoggedIn(unittest.TestCase):
         self.assertIn(b'Logged Out', result.data)
 
 
-    # def test_user_detail(self):
-    #     """Show user's page"""
 
-    #     result = self.client.get("/users/1")
-    #     self.assertIn(b"Welcome rachel@rachel.com", result.data)
-
-    # @app.route("/users/<int:user_id>")
-    # def test_user_detail(self):
-    # """Show user's page"""
-
-    # user = User.query.get(user_id)
-    # meals = Meal.query.filter_by(user_id=user_id).all()
-
-    # return render_template("user.html", user_id=user_id, user=user, meals=meals)
-
-
-    # @app.route('/users/<int:user_id>/new', methods=['GET'])
-    # def test_new_food_entry_form(self):
-    # """Show form for user's new entry."""
-    
-    # return render_template("entry.html", user_id=user_id)
+ 
 
 
     # @app.route('/users/<int:user_id>/new', methods=['POST'])
