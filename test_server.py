@@ -22,6 +22,7 @@ class TestFlaskRoutes(unittest.TestCase):
         # Create tables and add sample data
         db.create_all()
         example_data()
+
     def tearDown(self):
       """Stuff to do after each test."""
 
@@ -58,7 +59,7 @@ class TestFlaskRoutes(unittest.TestCase):
     def test_register_process(self):
         """Process registration."""
         result = self.client.post("/register",
-                                  data={"email": "joe@joe.com", "password": "123"},
+                                  data={"user_id": 3,"email": "joe@joe.com", "password": "123"},
                                   follow_redirects=True)
         self.assertIn(b"User joe@joe.com added.", result.data)
 
@@ -70,6 +71,9 @@ class TestFlaskRoutes(unittest.TestCase):
         result = self.client.get("/users/1")
 
         self.assertIn(b"Welcome rachel@rachel.com", result.data)
+
+
+
 
 class FlaskTestsLoggedIn(unittest.TestCase):
     """Flask tests with user logged in to session."""
