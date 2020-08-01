@@ -32,13 +32,21 @@ class BasicTests(unittest.TestCase):
    
         result = self.client.get('/')
         self.assertIn(b'Login', result.data)
-        
+
 
     def test_new_food_entry_form(self):
         """Show form for user's new entry."""
 
         result = self.client.get('/users/1/new')
         self.assertEqual(result.status_code, 200)
+
+    def test_search(self):
+        """Redirect to Edam food API search"""
+
+        result = self.client.get("/search",
+                                  follow_redirects=True)
+        self.assertEqual(result.status_code, 200)
+
 
 class TestFlaskRoutes(unittest.TestCase):
     """Test Flask routes that require access to the database."""
@@ -88,7 +96,6 @@ class TestFlaskRoutes(unittest.TestCase):
         self.assertIn(b"pie", result.data)
 
 
-
 class FlaskTestsLoggedIn(unittest.TestCase):
     """Flask tests with user logged in to session."""
 
@@ -103,6 +110,12 @@ class FlaskTestsLoggedIn(unittest.TestCase):
             with c.session_transaction() as sess:
                 sess['user_id'] = 1
 
+        # Connect to test database
+        connect_to_db(app, "postgresql:///testdb")
+
+        # Create tables and add sample data
+        db.create_all()
+        example_data()
 
     def test_logout(self):
         """Log out."""
@@ -111,34 +124,18 @@ class FlaskTestsLoggedIn(unittest.TestCase):
       
         self.assertIn(b'Logged Out', result.data)
 
-
-
- 
-
-
-    # @app.route('/users/<int:user_id>/new', methods=['POST'])
-    # def test_new_entry(self):
+    
+    def test_new_entry(self):
     # """Process new food entry."""
 
+        result = self.client.post("/users/1/new",
+                                  data={"food": "pizza", "carbs": 7, "date": "2020-02-02"},
+                                  follow_redirects=True)
 
-    #   #  Get form variables
-    # user_id = session["user_id"] 
-    # food = request.form["food"]
-    # carbs = request.form["carbs"]
-    # date = request.form["date"]
-    
+        self.assertEqual(result.status_code, 200)
+        self.assertIn(b"pizza", result.data)
 
-    # new_meal = Meal(user_id=user_id,food=food, carbs=carbs, date=date)
 
-    # db.session.add(new_meal)
-    # db.session.commit()
-    
-        
-    # return redirect(f"/users/{user_id}")
-
-    # @app.route('/search')
-    # def test_search(self):
-    # """Redirect to Edam food API search"""
 
 
     # return render_template('search.html')
