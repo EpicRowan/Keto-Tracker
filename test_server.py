@@ -6,26 +6,13 @@ from users import get_user_detail
 
 app.secret_key = "megasecret"
 
-class TestFlaskRoutes(unittest.TestCase):
-    """Test Flask routes."""
+class BasicTests(unittest.TestCase):
+    """Test routes that don't require access to the database or session."""
 
     def setUp(self):
-        """Stuff to do before every test."""
-
-        # Get the Flask test client
         self.client = app.test_client()
-        app.config['TESTING'] = True
-
-        # Connect to test database
-        connect_to_db(app, "postgresql:///testdb")
-
-        # Create tables and add sample data
-        db.create_all()
-        example_data()
-
-    def tearDown(self):
-      """Stuff to do after each test."""
-
+        app.config["TESTING"] = True
+        app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
     def test_home(self):
         """Make sure home page returns correct HTML."""
@@ -45,6 +32,33 @@ class TestFlaskRoutes(unittest.TestCase):
    
         result = self.client.get('/')
         self.assertIn(b'Login', result.data)
+        
+
+    def test_new_food_entry_form(self):
+        """Show form for user's new entry."""
+
+        result = self.client.get('/users/1/new')
+        self.assertEqual(result.status_code, 200)
+
+class TestFlaskRoutes(unittest.TestCase):
+    """Test Flask routes that require access to the database."""
+
+    def setUp(self):
+        """Stuff to do before every test."""
+
+        # Get the Flask test client
+        self.client = app.test_client()
+        app.config['TESTING'] = True
+
+        # Connect to test database
+        connect_to_db(app, "postgresql:///testdb")
+
+        # Create tables and add sample data
+        db.create_all()
+        example_data()
+
+    def tearDown(self):
+      """Stuff to do after each test."""
 
 
     def test_login_process(self):
@@ -73,11 +87,6 @@ class TestFlaskRoutes(unittest.TestCase):
         self.assertIn(b"Welcome rachel@rachel.com", result.data)
         self.assertIn(b"pie", result.data)
 
-    def test_new_food_entry_form(self):
-        """Show form for user's new entry."""
-
-        result = self.client.get('/users/1/new')
-        self.assertEqual(result.status_code, 200)
 
 
 class FlaskTestsLoggedIn(unittest.TestCase):
