@@ -10,6 +10,8 @@ from flask_debugtoolbar import DebugToolbarExtension
 
 from model import User, Meal, connect_to_db, db
 
+from users import get_user_detail
+
 from datetime import datetime
 
 app = Flask(__name__)
@@ -96,7 +98,7 @@ def login_process():
 
 
 @app.route("/users/<int:user_id>")
-def user_detail(user_id):
+def show_user_detail(user_id):
 	"""Show user's page"""
 
 	user = User.query.get(user_id)

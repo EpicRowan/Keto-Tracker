@@ -76,7 +76,8 @@ def example_data():
 
     # Sample User table
 
-    U1 = User(email='rachel@rachel.com', password ="123")
+    U1 = User(user_id=1, email='rachel@rachel.com', password ="123")
+    U2 = User(user_id=2,email='spot@spot.com', password ="123")
  
     # Sample Food 
 
@@ -85,7 +86,7 @@ def example_data():
 
     
 
-    db.session.add_all([U1])
+    db.session.add_all([U1, U2])
     db.session.commit()    
 
 

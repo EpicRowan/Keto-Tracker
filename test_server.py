@@ -1,7 +1,8 @@
 import unittest 
-from server import app 
+from server import app
 from model import db, connect_to_db, example_data, User
 from flask import session
+from users import get_user_detail
 
 app.secret_key = "megasecret"
 
@@ -21,7 +22,6 @@ class TestFlaskRoutes(unittest.TestCase):
         # Create tables and add sample data
         db.create_all()
         example_data()
-
     def tearDown(self):
       """Stuff to do after each test."""
 
@@ -63,18 +63,13 @@ class TestFlaskRoutes(unittest.TestCase):
         self.assertIn(b"User joe@joe.com added.", result.data)
 
   
-    def test_user_detail(self, user_id=1):
-        """Show user's page"""
-        # user = User.query.get(user_id)
-        # print(user)
-        # result = self.client.get("/users/1", user=user)
-        
+    def test_user_detail(self):
+        """Show user's page"""   
 
-        data = {"user_id": 1}
-        result = self.client.get("/users/1", data=data)
         user = User.query.get(1)
-        print(user)
-        self.assertEqual(result.status_code, 200)
+        result = self.client.get("/users/1")
+
+        self.assertIn(b"Welcome rachel@rachel.com", result.data)
 
 class FlaskTestsLoggedIn(unittest.TestCase):
     """Flask tests with user logged in to session."""
