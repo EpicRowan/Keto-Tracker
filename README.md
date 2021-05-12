@@ -84,4 +84,4 @@ jjkjk
 
 ## <a name="aboutme"></a>About the Developer
 
- Doom Mapper was created by former teacher Rowan Shepherd, a science and dark humor enthusiast who transitioned into software engineering. This is her first fullstack project. She can be found on [LinkedIn](https://https://www.linkedin.com/in/rowan-shepherd/) and on [Github](https://github.com/EpicRowan).
+ This app was created by former teacher Rowan Shepherd, a science and dark humor enthusiast who transitioned into software engineering. This is her first fullstack project. She can be found on [LinkedIn](https://https://www.linkedin.com/in/rowan-shepherd/) and on [Github](https://github.com/EpicRowan).
